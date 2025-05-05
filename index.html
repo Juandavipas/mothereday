@@ -1,132 +1,134 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Feliz Día de las Madres</title>
-  <style>
-    body {
-      margin: 0;
-      background: linear-gradient(to bottom, #ffe6f0, #f2e6ff);
-      color: #663399;
-      font-family: 'Arial', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .terminal-box {
-      background-color: #fff0f5;
-      border: 2px solid #cc99ff;
-      border-radius: 15px;
-      padding: 25px;
-      max-width: 800px;
-      width: 100%;
-      box-shadow: 0 0 25px #e0b3ff;
-    }
-
-    .line {
-      white-space: pre-wrap;
-      margin-bottom: 15px;
-      font-size: 1rem;
-      line-height: 1.5;
-      word-break: break-word;
-    }
-
-    .typing {
-      display: inline-block;
-      border-right: 2px solid #cc99ff;
-      animation: blink 1s step-start infinite;
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
-    .image-container {
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .image-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 15px;
-      border: 3px solid #cc99ff;
-      box-shadow: 0 0 15px #dda0dd;
-    }
-
-    @media (max-width: 600px) {
-      .line {
-        font-size: 0.95rem;
-      }
-
-      .terminal-box {
-        padding: 15px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="terminal-box">
-    <div id="terminal"></div>
-    <div class="image-container" id="imageContainer" style="display: none;">
-      <img src="https://i.imgur.com/DM1Lmr7.png" alt="Las quiero mucho ❤️">
-    </div>
-  </div>
-
-  <script>
-    const terminal = document.getElementById("terminal");
-    const imageContainer = document.getElementById("imageContainer");
-
-    const lines = [
-      "Feliz Día de las Madres 💐",
-      "",
-      "Queridas mamá y hermana:",
-      "",
-      "Gracias por todo lo que me han dado,",
-      "por su amor, su apoyo y por estar siempre conmigo.",
-      "",
-      "A ti, mamá, por ser la mejor madre del mundo.",
-      "A ti, hermana, por haber sido como una segunda madre para mí,",
-      "y ahora también por ser la increíble mamá de ese pequeño",
-      "al que quiero con todo mi corazón.",
-      "",
-      "Gracias por todo lo que me han dado.",
-      "",
-      "¡Feliz Día de la Madre!",
-      "Con todo mi amor ❤️"
-    ];
-
-    let i = 0;
-
-    function printLine() {
-      if (i < lines.length) {
-        const div = document.createElement("div");
-        div.className = "line";
-        terminal.appendChild(div);
-
-        let j = 0;
-        function typeChar() {
-          if (j <= lines[i].length) {
-            div.innerHTML = lines[i].slice(0, j) + '<span class="typing"></span>';
-            j++;
-            setTimeout(typeChar, 25);
-          } else {
-            div.innerHTML = lines[i];
-            i++;
-            setTimeout(printLine, 350);
-          }
+    <meta charset="UTF-8">
+    <title>Feliz Día de las Madres</title>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(to bottom, #ffe6f0, #f2e6ff);
+            color: #663399;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        typeChar();
-      } else {
-        imageContainer.style.display = "block";
-      }
-    }
+        .terminal-box {
+            background-color: #fff0f5;
+            border: 2px solid #cc99ff;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 0 25px #e0b3ff;
+        }
 
-    printLine();
-  </script>
+        .line {
+            white-space: pre-wrap;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        .typing {
+            display: inline-block;
+            border-right: 2px solid #cc99ff;
+            animation: blink 1s step-start infinite;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .image-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            border: 3px solid #cc99ff;
+            box-shadow: 0 0 15px #dda0dd;
+        }
+
+        @media (max-width: 600px) {
+            .line {
+                font-size: 0.85rem; /* Reducimos aún más el tamaño de la fuente */
+            }
+
+            .terminal-box {
+                padding: 15px;
+                width: 95%; /* Ocupa un mayor porcentaje del ancho en pantallas pequeñas */
+                max-width: none; /* Eliminamos el ancho máximo para que se ajuste */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-box">
+        <div id="terminal"></div>
+        <div class="image-container" id="imageContainer" style="display: none;">
+            <img src="https://i.imgur.com/DM1Lmr7.png" alt="Las quiero mucho ❤️">
+        </div>
+    </div>
+
+    <script>
+        const terminal = document.getElementById("terminal");
+        const imageContainer = document.getElementById("imageContainer");
+
+        const lines = [
+            "Feliz Día de las Madres 💐",
+            "",
+            "Queridas mamá y hermana:",
+            "",
+            "Gracias por todo lo que me han dado,",
+            "por su amor, su apoyo y por estar siempre conmigo.",
+            "",
+            "A ti, mamá, por ser la mejor madre del mundo.",
+            "A ti, hermana, por haber sido como una segunda madre para mí,",
+            "y ahora también por ser la increíble mamá de ese pequeño",
+            "al que quiero con todo mi corazón.",
+            "",
+            "Gracias por todo lo que me han dado.",
+            "",
+            "¡Feliz Día de la Madre!",
+            "Con todo mi amor ❤️"
+        ];
+
+        let i = 0;
+
+        function printLine() {
+            if (i < lines.length) {
+                const div = document.createElement("div");
+                div.className = "line";
+                terminal.appendChild(div);
+
+                let j = 0;
+                function typeChar() {
+                    if (j <= lines[i].length) {
+                        div.innerHTML = lines[i].slice(0, j) + '<span class="typing"></span>';
+                        j++;
+                        setTimeout(typeChar, 25);
+                    } else {
+                        div.innerHTML = lines[i];
+                        i++;
+                        setTimeout(printLine, 350);
+                    }
+                }
+
+                typeChar();
+            } else {
+                imageContainer.style.display = "block";
+            }
+        }
+
+        printLine();
+    </script>
 </body>
 </html>
