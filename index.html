@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+ <html lang="es">
+ <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feliz Día de las Madres</title>
@@ -11,41 +11,46 @@
 
     body {
       margin: 0;
-      background: linear-gradient(to bottom, #ffe6f0, #f2e6ff);
-      color: #663399;
-      font-family: 'Arial', sans-serif;
+      background-image: url("https://i.imgur.com/ayQYPUw.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #702963; /* Un morado más intenso */
+      font-family: 'Brush Script MT', cursive; /* Una fuente de tipo carta */
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 20px;
-      text-transform: none; /* Evita forzar mayúsculas */
+      padding: 30px;
+      text-transform: none;
+      text-align: center; /* Centrar el texto en el body inicialmente */
     }
 
     .terminal-box {
-      background-color: #fff0f5;
-      border: 2px solid #cc99ff;
+      background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco ligeramente transparente */
       border-radius: 15px;
-      padding: 25px;
-      max-width: 800px;
-      width: 100%;
-      box-shadow: 0 0 25px #e0b3ff;
+      padding: 30px;
+      max-width: 600px; /* Ancho máximo para simular una carta */
+      width: 90%; /* Ajuste para pantallas más pequeñas */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       overflow-wrap: break-word;
+      text-align: center; /* Centrar el texto dentro del cuadro */
     }
 
     .line {
       white-space: pre-wrap;
-      margin-bottom: 15px;
-      font-size: 1rem;
-      line-height: 1.5;
+      margin-bottom: 18px;
+      font-size: 1.3rem; /* Tamaño de fuente un poco más grande */
+      line-height: 1.6;
       word-break: break-word;
       text-transform: none;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
     }
 
     .typing {
       display: inline-block;
-      border-right: 2px solid #cc99ff;
-      animation: blink 1s step-start infinite;
+      border-right: 2px solid #702963; /* Cursor del mismo color del texto */
+      animation: blink 0.9s step-start infinite;
     }
 
     @keyframes blink {
@@ -56,31 +61,31 @@
 
     .image-container {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
     }
 
     .image-container img {
-      max-width: 100%;
+      max-width: 70%; /* Ajustar el tamaño de la imagen */
       height: auto;
       border-radius: 15px;
-      border: 3px solid #cc99ff;
-      box-shadow: 0 0 15px #dda0dd;
+      border: 2px solid #702963;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     @media (max-width: 600px) {
       .line {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
       }
 
       .terminal-box {
-        padding: 15px;
+        padding: 20px;
         width: 95%;
         max-width: none;
       }
     }
   </style>
-</head>
-<body>
+ </head>
+ <body>
   <div class="terminal-box">
     <div id="terminal"></div>
     <div class="image-container" id="imageContainer" style="display: none;">
@@ -124,11 +129,11 @@
           if (j <= lines[i].length) {
             div.innerHTML = lines[i].slice(0, j) + '<span class="typing"></span>';
             j++;
-            setTimeout(typeChar, 25);
+            setTimeout(typeChar, 30);
           } else {
             div.innerHTML = lines[i];
             i++;
-            setTimeout(printLine, 350);
+            setTimeout(printLine, 400);
           }
         }
 
@@ -140,6 +145,5 @@
 
     printLine();
   </script>
-</body>
-</html>
-
+ </body>
+ </html>
