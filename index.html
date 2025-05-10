@@ -1,6 +1,6 @@
 <!DOCTYPE html>
- <html lang="es">
- <head>
+<html lang="es">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feliz Día de las Madres</title>
@@ -15,41 +15,39 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      color: #702963; /* Un morado más intenso */
-      font-family: 'Brush Script MT', cursive; /* Una fuente de tipo carta */
+      color: #702963;
+      font-family: 'Brush Script MT', cursive;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       padding: 30px;
-      text-transform: none;
-      text-align: center; /* Centrar el texto en el body inicialmente */
+      text-align: center;
     }
 
     .terminal-box {
-      background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco ligeramente transparente */
+      background-color: rgba(255, 255, 255, 0.8);
       border-radius: 15px;
       padding: 30px;
-      max-width: 600px; /* Ancho máximo para simular una carta */
-      width: 90%; /* Ajuste para pantallas más pequeñas */
+      max-width: 600px;
+      width: 90%;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       overflow-wrap: break-word;
-      text-align: center; /* Centrar el texto dentro del cuadro */
+      text-align: center;
     }
 
     .line {
       white-space: pre-wrap;
       margin-bottom: 18px;
-      font-size: 1.3rem; /* Tamaño de fuente un poco más grande */
+      font-size: 1.3rem;
       line-height: 1.6;
       word-break: break-word;
-      text-transform: none;
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
     }
 
     .typing {
       display: inline-block;
-      border-right: 2px solid #702963; /* Cursor del mismo color del texto */
+      border-right: 2px solid #702963;
       animation: blink 0.9s step-start infinite;
     }
 
@@ -65,7 +63,7 @@
     }
 
     .image-container img {
-      max-width: 70%; /* Ajustar el tamaño de la imagen */
+      max-width: 70%;
       height: auto;
       border-radius: 15px;
       border: 2px solid #702963;
@@ -84,14 +82,17 @@
       }
     }
   </style>
- </head>
- <body>
+</head>
+<body>
   <div class="terminal-box">
     <div id="terminal"></div>
     <div class="image-container" id="imageContainer" style="display: none;">
       <img src="https://i.imgur.com/DM1Lmr7.png" alt="Las quiero mucho ❤️">
     </div>
   </div>
+
+  <!-- Contenedor del reproductor oculto -->
+  <div id="player"></div>
 
   <script>
     const terminal = document.getElementById("terminal");
@@ -145,8 +146,39 @@
 
     printLine();
   </script>
- </body>
- </html>
+
+  <!-- YouTube API Script -->
+  <script>
+    // Cargar la API de YouTube
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: 'CIXWJpV_4kc',
+        playerVars: {
+          'autoplay': 1,
+          'loop': 1,
+          'playlist': 'CIXWJpV_4kc',
+          'controls': 0,
+          'modestbranding': 1,
+          'showinfo': 0
+        },
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      event.target.setVolume(15); // Volumen de 0 a 100
+      event.target.playVideo();
+    }
   </script>
- </body>
- </html>
+</body>
+</html>
