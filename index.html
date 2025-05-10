@@ -1,224 +1,270 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Feliz Día de las Madres</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Feliz Día de las Madres</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      background-image: url("https://img.freepik.com/fotos-premium/fondo-floral-flores-al-estilo_865091-268.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: #702963;
-      font-family: 'Brush Script MT', cursive;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 30px;
-      text-align: center;
-      overflow-x: hidden; /* ✅ Solo oculta scroll horizontal */
-    }
+        body {
+            margin: 0;
+            background-image: url("https://img.freepik.com/fotos-premium/fondo-floral-flores-al-estilo_865091-268.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #702963;
+            font-family: 'Brush Script MT', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px;
+            text-align: center;
+            overflow-x: hidden;
+        }
 
-    .terminal-box {
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 15px;
-      padding: 30px;
-      max-width: 600px;
-      width: 90%;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      overflow-wrap: break-word;
-      text-align: center;
-    }
+        .terminal-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow-wrap: break-word;
+            text-align: center;
+            position: relative;
+        }
 
-    .line {
-      white-space: pre-wrap;
-      margin-bottom: 18px;
-      font-size: 1.3rem;
-      line-height: 1.6;
-      word-break: break-word;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-    }
+        .line {
+            white-space: pre-wrap;
+            margin-bottom: 18px;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            word-break: break-word;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+        }
 
-    .typing {
-      display: inline-block;
-      border-right: 2px solid #702963;
-      animation: blink 0.9s step-start infinite;
-    }
+        .typing {
+            display: inline-block;
+            border-right: 2px solid #702963;
+            animation: blink 0.9s step-start infinite;
+        }
 
-    @keyframes blink {
-      50% {
-        border-color: transparent;
-      }
-    }
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
 
-    .image-container {
-      text-align: center;
-      margin-top: 40px;
-    }
+        .image-container {
+            text-align: center;
+            margin-top: 40px;
+        }
 
-    .image-container img {
-      max-width: 70%;
-      height: auto;
-      border-radius: 15px;
-      border: 2px solid #702963;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
+        .image-container img {
+            max-width: 70%;
+            height: auto;
+            border-radius: 15px;
+            border: 2px solid #702963;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    /* Efecto de pétalos */
-    .petal {
-      position: fixed;
-      top: -50px;
-      width: 30px;
-      height: 30px;
-      background-image: url('https://i.imgur.com/iLnxnpt.png');
-      background-size: cover;
-      opacity: 0.8;
-      pointer-events: none;
-      animation: fall linear infinite;
-    }
+        .play-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #702963;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
+        .play-button:hover {
+            background-color: #551f4c;
+        }
 
-    @media (max-width: 600px) {
-      .line {
-        font-size: 1.1rem;
-      }
+        #player-container {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
 
-      .terminal-box {
-        padding: 20px;
-        width: 95%;
-        max-width: none;
-      }
-    }
-  </style>
+        #player {
+            width: 1px;
+            height: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .line {
+                font-size: 1.1rem;
+            }
+
+            .terminal-box {
+                padding: 20px;
+                width: 95%;
+                max-width: none;
+            }
+
+            .play-button {
+                top: 15px;
+                right: 15px;
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+        }
+
+        .petal {
+            position: fixed;
+            top: -50px;
+            width: 30px;
+            height: 30px;
+            background-image: url('https://i.imgur.com/iLnxnpt.png');
+            background-size: cover;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="terminal-box">
-    <div id="terminal"></div>
-    <div class="image-container" id="imageContainer" style="display: none;">
-      <img src="https://i.imgur.com/DM1Lmr7.png" alt="Las quiero mucho ❤️">
+    <div class="terminal-box">
+        <div id="terminal"></div>
+        <div class="image-container" id="imageContainer" style="display: none;">
+            <img src="https://i.imgur.com/DM1Lmr7.png" alt="Las quiero mucho ❤️">
+        </div>
+        <button class="play-button" id="playButton">Music</button>
+        <div id="player-container">
+            <div id="player"></div>
+        </div>
     </div>
-  </div>
 
-  <div id="player"></div>
+    <script>
+        const terminal = document.getElementById("terminal");
+        const imageContainer = document.getElementById("imageContainer");
+        const playButton = document.getElementById("playButton");
+        const playerContainer = document.getElementById("player-container");
+        const playerDiv = document.getElementById("player");
 
-  <script>
-    const terminal = document.getElementById("terminal");
-    const imageContainer = document.getElementById("imageContainer");
+        const lines = [
+            "Feliz Día de las Madres 💐",
+            "",
+            "Queridas mamá y hermana:",
+            "",
+            "Gracias por todo lo que me han dado,",
+            "por su amor, su apoyo y por estar siempre conmigo.",
+            "",
+            "A ti, mamá, por ser la mejor madre del mundo.",
+            "A ti, hermana, por haber sido como una segunda madre para mí,",
+            "y ahora también por ser la increíble mamá de ese pequeño",
+            "al que quiero con todo mi corazón.",
+            "",
+            "Gracias por todo lo que me han dado.",
+            "",
+            "¡Feliz Día de la Madre!",
+            "Con todo mi amor ❤️"
+        ];
 
-    const lines = [
-      "Feliz Día de las Madres 💐",
-      "",
-      "Queridas mamá y hermana:",
-      "",
-      "Gracias por todo lo que me han dado,",
-      "por su amor, su apoyo y por estar siempre conmigo.",
-      "",
-      "A ti, mamá, por ser la mejor madre del mundo.",
-      "A ti, hermana, por haber sido como una segunda madre para mí,",
-      "y ahora también por ser la increíble mamá de ese pequeño",
-      "al que quiero con todo mi corazón.",
-      "",
-      "Gracias por todo lo que me han dado.",
-      "",
-      "¡Feliz Día de la Madre!",
-      "Con todo mi amor ❤️"
-    ];
+        let i = 0;
 
-    let i = 0;
+        function printLine() {
+            if (i < lines.length) {
+                const div = document.createElement("div");
+                div.className = "line";
+                terminal.appendChild(div);
 
-    function printLine() {
-      if (i < lines.length) {
-        const div = document.createElement("div");
-        div.className = "line";
-        terminal.appendChild(div);
+                let j = 0;
+                function typeChar() {
+                    if (j <= lines[i].length) {
+                        div.innerHTML = lines[i].slice(0, j) + '<span class="typing"></span>';
+                        j++;
+                        setTimeout(typeChar, 30);
+                    } else {
+                        div.innerHTML = lines[i];
+                        i++;
+                        setTimeout(printLine, 400);
+                    }
+                }
 
-        let j = 0;
-        function typeChar() {
-          if (j <= lines[i].length) {
-            div.innerHTML = lines[i].slice(0, j) + '<span class="typing"></span>';
-            j++;
-            setTimeout(typeChar, 30);
-          } else {
-            div.innerHTML = lines[i];
-            i++;
-            setTimeout(printLine, 400);
-          }
+                typeChar();
+            } else {
+                imageContainer.style.display = "block";
+            }
         }
 
-        typeChar();
-      } else {
-        imageContainer.style.display = "block";
-      }
-    }
+        printLine();
 
-    printLine();
+        playButton.addEventListener("click", function() {
+            loadAndPlayVideo('CIXWJpV_4kc');
+        });
 
-    // Cargar el reproductor de YouTube y reproducir el video
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        function loadAndPlayVideo(videoId) {
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    var player;
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: 'CIXWJpV_4kc',
-        playerVars: {
-          'autoplay': 1,
-          'loop': 1,
-          'playlist': 'CIXWJpV_4kc',
-          'controls': 0,
-          'modestbranding': 1,
-          'showinfo': 0
-        },
-        events: {
-          'onReady': onPlayerReady
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('player', {
+                    height: '1',
+                    width: '1',
+                    videoId: videoId,
+                    playerVars: {
+                        'autoplay': 1,
+                        'loop': 1,
+                        'playlist': videoId,
+                        'controls': 0,
+                        'modestbranding': 1,
+                        'showinfo': 0
+                    },
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
+            }
+
+            function onPlayerReady(event) {
+                event.target.setVolume(15);
+                event.target.playVideo();
+            }
         }
-      });
-    }
 
-    function onPlayerReady(event) {
-      event.target.setVolume(15); // volumen al 15%
-      event.target.playVideo();
-    }
-  </script>
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.style.left = Math.random() * 100 + "vw";
+            petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+            petal.style.opacity = Math.random();
 
-  <!-- Script para pétalos -->
-  <script>
-    function createPetal() {
-      const petal = document.createElement('div');
-      petal.classList.add('petal');
-      petal.style.left = Math.random() * 100 + "vw";
-      petal.style.animationDuration = (5 + Math.random() * 5) + "s";
-      petal.style.opacity = Math.random();
+            document.body.appendChild(petal);
 
-      document.body.appendChild(petal);
+            setTimeout(() => {
+                petal.remove();
+            }, 10000);
+        }
 
-      setTimeout(() => {
-        petal.remove();
-      }, 10000);
-    }
-
-    setInterval(createPetal, 300);
-  </script>
+        setInterval(createPetal, 300);
+    </script>
 </body>
 </html>
