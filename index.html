@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Feliz Día de las Madres</title>
   <style>
     * {
@@ -23,6 +23,7 @@
       min-height: 100vh;
       padding: 30px;
       text-align: center;
+      overflow: hidden;
     }
 
     .terminal-box {
@@ -70,6 +71,30 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
+    /* Efecto de pétalos */
+    .petal {
+      position: fixed;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://i.imgur.com/iLnxnpt.png');
+      background-size: cover;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
     @media (max-width: 600px) {
       .line {
         font-size: 1.1rem;
@@ -91,7 +116,6 @@
     </div>
   </div>
 
-  <!-- Contenedor del reproductor oculto -->
   <div id="player"></div>
 
   <script>
@@ -147,9 +171,8 @@
     printLine();
   </script>
 
-  <!-- YouTube API Script -->
+  <!-- API de YouTube -->
   <script>
-    // Cargar la API de YouTube
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -176,9 +199,28 @@
     }
 
     function onPlayerReady(event) {
-      event.target.setVolume(15); // Volumen de 0 a 100
+      event.target.setVolume(15); // volumen al 15%
       event.target.playVideo();
     }
+  </script>
+
+  <!-- Script para pétalos -->
+  <script>
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDuration = (5 + Math.random() * 5) + "s";
+      petal.style.opacity = Math.random();
+
+      document.body.appendChild(petal);
+
+      setTimeout(() => {
+        petal.remove();
+      }, 10000);
+    }
+
+    setInterval(createPetal, 300);
   </script>
 </body>
 </html>
