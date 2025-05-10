@@ -24,6 +24,7 @@
             padding: 30px;
             text-align: center;
             overflow-x: hidden;
+            position: relative;
         }
 
         .terminal-box {
@@ -35,7 +36,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             overflow-wrap: break-word;
             text-align: center;
-            position: relative;
         }
 
         .line {
@@ -75,7 +75,7 @@
         .play-button {
             position: absolute;
             top: 20px;
-            right: 20px;
+            left: 20px;
             background-color: #702963;
             color: white;
             padding: 8px 12px;
@@ -118,7 +118,7 @@
 
             .play-button {
                 top: 15px;
-                right: 15px;
+                left: 15px;
                 font-size: 0.8rem;
                 padding: 6px 10px;
             }
@@ -149,12 +149,12 @@
     </style>
 </head>
 <body>
+    <button class="play-button" id="playButton">Music</button>
     <div class="terminal-box">
         <div id="terminal"></div>
         <div class="image-container" id="imageContainer" style="display: none;">
             <img src="https://i.imgur.com/DM1Lmr7.png" alt="Las quiero mucho ❤️">
         </div>
-        <button class="play-button" id="playButton">Music</button>
         <div id="player-container">
             <div id="player"></div>
         </div>
